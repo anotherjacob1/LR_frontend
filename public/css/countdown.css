@@ -1,0 +1,128 @@
+html { height: 100%; }
+body { 
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.flip-clock {
+  text-align: center;
+  perspective: 400px;
+}
+
+.flip-clock__piece {
+  display: inline-block;
+  margin: 0 5px;
+  width: 59px;
+}
+
+.flip-clock__slot {
+  font-size: 12px;
+  line-height: 18px;
+  color: #000000;
+  opacity: 0.5;
+}
+
+.card {
+  display: block;
+  position: relative; 
+  padding-bottom: 23px;
+  font-size: 9vw;
+  line-height: 0.95;
+}
+
+.card__top,
+.card__bottom,
+.card__back::before,
+.card__back::after {
+  display: block;
+  height: 3px;
+  color: #fff;
+  background: #000;
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+  backface-visiblity: hidden;
+  transform-style: preserve-3d;
+  width: 39px;
+  transform: translateZ(0);
+}
+
+.card__bottom { 
+  color: #FFF;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-top: solid 1px #000;
+  background: #393939; 
+  border-radius: 0 0 10px 10px; 
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.card__bottom::after {
+  display: block;
+  margin-top: -23px;
+}
+
+.card__back::before,
+.card__bottom::after {
+  content: attr(data-value);
+}
+
+.card__back {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 0%;
+  pointer-events: none;
+}
+
+.card__back::before {
+  position: relative;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.flip .card__back::before {
+  animation: flipTop 0.3s cubic-bezier(.37,.01,.94,.35);
+  animation-fill-mode: both;
+  transform-origin: center bottom;
+}
+
+.flip .card__back .card__bottom {
+  transform-origin: center top;
+  animation-fill-mode: both;
+  animation: flipBottom 0.6s cubic-bezier(.15,.45,.28,1);
+}
+
+@keyframes flipTop {
+  0% {
+    transform: rotateX(0deg);
+    z-index: 2;
+  }
+  0%, 99% {
+    opacity: 0.99;
+  }
+  100% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes flipBottom {
+  0%, 50% {
+    z-index: -1;
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+  51% {
+    opacity: 0.99;
+  }
+  100% {
+    opacity: 0.99;
+    transform: rotateX(0deg);
+    z-index: 5;
+  }
+}

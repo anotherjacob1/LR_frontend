@@ -1,6 +1,6 @@
 {
-  "short_name": "Premia",
-  "name": "Premia Finance",
+  "short_name": "LooksRare",
+  "name": "Looks Rare",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,7 +8,7 @@
       "type": "image/x-icon"
     },
     {
-      "src": "PremiaMainLogo.png",
+      "src": "LooksRareLogo.png",
       "type": "image/png",
       "sizes": "32x32"
     }
